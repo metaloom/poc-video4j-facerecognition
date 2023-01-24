@@ -1,0 +1,21 @@
+
+Table face {
+  uuid uuid_generate_v4 [increment]
+  source varchar [unique, not null, note: 'Identification of the source media']
+  face_nr int [not null, note: 'When the source contains more than one face the id can be used to identify them.']
+  
+  blob embeddings [not null, note: 'The actual embedding data']
+    meta varchar [note: "Custom meta properties to the element"]
+
+  type embedding_types 
+  note: "Stores embeddings"
+  
+  Indexes {
+    (uuid) [pk]
+  }
+  
+}
+
+Enum embedding_types {
+  DLIB_FACE_RESNET_v1
+}
